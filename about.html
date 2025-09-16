@@ -192,14 +192,17 @@
             animation: float 10s ease-in-out infinite 1s;
         }
         
+        /* Style amélioré pour l'image */
         .about-img {
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transform: perspective(1000px) rotateY(-5deg);
             transition: all 0.5s ease;
             position: relative;
             z-index: 2;
+            border: 5px solid white;
+            margin-right: 30px; /* Espacement ajouté à droite de l'image */
         }
         
         .about-img:hover {
@@ -227,11 +230,12 @@
         .about-text-content {
             position: relative;
             z-index: 2;
+            padding-left: 30px; /* Espacement ajouté à gauche du texte */
         }
         
         .about-text-content h2 {
             color: var(--secondary);
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             position: relative;
             display: inline-block;
             font-size: 2.5rem;
@@ -257,8 +261,6 @@
             color: var(--primary);
             font-weight: 600;
         }
-        
-        
         
         /* Footer */
         footer {
@@ -370,6 +372,11 @@
             .about-img {
                 transform: perspective(1000px) rotateY(0);
                 margin-bottom: 30px;
+                margin-right: 0; /* Suppression de l'espacement à droite sur mobile */
+            }
+            
+            .about-text-content {
+                padding-left: 0; /* Suppression de l'espacement à gauche sur mobile */
             }
             
             .about-text-content h2 {
