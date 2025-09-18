@@ -393,6 +393,145 @@
                 font-size: 2.2rem;
             }
         }
+        /* Styles spécifiques pour le carrousel de projets avec glissement */
+        .projects-carousel .slick-list {
+            padding: 20px 0;
+        }
+        
+        .projects-carousel .slick-slide {
+            padding: 0 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .projects-carousel .slick-slide:hover {
+            transform: translateY(-5px);
+        }
+        
+        .projects-carousel .slick-prev,
+        .projects-carousel .slick-next {
+            width: 40px;
+            height: 40px;
+            display: none !important;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .projects-carousel .slick-prev {
+            left: -20px;
+            display: none !important;
+        }
+        
+        .projects-carousel .slick-next {
+            right: -20px;
+            display: none !important;
+        }
+        
+        .projects-carousel .slick-prev:before,
+        .projects-carousel .slick-next:before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .projects-carousel .slick-prev:before {
+            content: '\f053';
+        }
+        
+        .projects-carousel .slick-next:before {
+            content: '\f054';
+        }
+        
+        
+        
+        .projects-carousel .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .projects-carousel .slick-dots li.slick-active button:before {
+            color: var(--primary);
+            opacity: 1;
+        }
+        .projects-carousel {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .projects-title {
+            font-size: 2rem;
+            font-weight: normal;
+            font-family: 'Roboto', sans-serif;
+            color: var(--secondary);
+        }
+        
+        .projects-link {
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color .3s ease;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .projects-link:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+        
+        .projects-link:hover {
+            color: var(--primary);
+        }
+        
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .project-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 15px;
+            color: var(--secondary);
+        }
+        
+        .project-info h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--secondary);
+        }
+        
+        .projects-text {
+            font-size: 1.4em;
+        }
+       
     </style>
 </head>
 <body>
@@ -422,12 +561,10 @@
                         <a class="nav-link" href="#">Références</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-                <a href="#" class="contact-button ms-lg-3">
-                    <i class="fas fa-phone"></i> Nous contacter
-                </a>
+                
             </div>
         </div>
     </nav>
@@ -450,7 +587,92 @@
             </div>
         </div>
     </section>
+<!-- Section Nos Derniers Projets - MODIFIÉE pour Slick Carousel -->
+    <section class="projects-carousel">
+        <div class="container">
+            <!-- En-tête avec titre et texte -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <h2 class="projects-title">Nos Derniers Projets</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="projects-text">
+                        Découvrez quelques-unes de nos réalisations récentes en photovoltaïque
+                    </p>
+                    <a href="#" class="projects-link">Découvrez nos projets</a>
+                </div>
+            </div>
 
+            <!-- Carrousel Slick - REMPLACE le carrousel Bootstrap -->
+            <div class="projects-slick-carousel">
+                <!-- Projet 1 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 1">
+                        <div class="project-info">
+                            <h5>Immeuble Route de Sous-Moulin - Genève</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 2">
+                        <div class="project-info">
+                            <h5>Maison de Retraite Érables - Genève</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 3">
+                        <div class="project-info">
+                            <h5>Clinique Genolier - Vaud</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 4">
+                        <div class="project-info">
+                            <h5>Projet Résidentiel Lausanne</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 5">
+                        <div class="project-info">
+                            <h5>Usine Industrielle Zurich</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 6">
+                        <div class="project-info">
+                            <h5>Bâtiment Administratif Genève</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -506,8 +728,158 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });  
+    </script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
         
+        // Initialize Slick Carousel for client logos
+        $(document).ready(function(){
+            $('.logos-carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+            
+            // Initialize Slick Carousel for projects - NOUVEAU
+            $('.projects-slick-carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: false,
+                draggable: true, // Permet le glissement avec la souris
+                swipe: true,     // Permet le glissement tactile
+                touchMove: true, // Permet le déplacement par toucher
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+        
+        // Animation pour la section À propos
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutSection = document.querySelector('.about-section');
+            const servicesItems = document.querySelectorAll('.services-list li');
+            
+            // Observer pour animer les éléments lorsqu'ils deviennent visibles
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        servicesItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(aboutSection);
+            
+            // Animation des compteurs - MODIFIÉ pour ralentir
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 1000; // Augmenté pour ralentir l'animation
+            
+            const startCounter = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    
+                    const inc = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(() => startCounter(), 20); // Augmenté le délai pour ralentir
+                    } else {
+                        counter.innerText = target;
+                    }
+                });
+            };
+            
+            
+        // Démarrer l'animation des compteurs lorsqu'ils sont visibles
+            const statsSection = document.querySelector('.stats-counter-section');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-count');
+                            const count = +counter.innerText;
+                            const increment = target / speed;
+                            
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + increment);
+                                setTimeout(updateCount, 1);
+                            } else {
+                                counter.innerText = target;
+                            }
+                            
+                            function updateCount() {
+                                const count = +counter.innerText;
+                                if (count < target) {
+                                    counter.innerText = Math.ceil(count + increment);
+                                    setTimeout(updateCount, 1);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsSection);
+        });
     </script>
 </body>
 </html>
