@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opti Sun - Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8C00;
+            --primary-dark: #E67E00;
+            --secondary: #2C3E50;
+            --light: #ECF0F1;
+            --accent: #3498DB;
+            --text: #333333;
+            --background: #FFFFFF;
+            --gradient: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            color: var(--secondary);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .contact-button {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+            color: white;
+        }
+        
+        
+        
+        
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--secondary);
+            display: block;
+        }
+        
+        .form-control {
+            padding: 15px 20px;
+            border: 1px solid #e1e5eb;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.15);
+        }
+        
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.25);
+        }
+        
+        /* Info Section */
+        .info-section {
+            margin-top: 150px;
+            background: white;
+        }
+        
+        .info-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 30px;
+            height: 100%;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .info-card h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+      
+        
+        @media (max-width: 768px) {
+            
+            
+            .contact-info-card {
+                margin-bottom: 30px;
+                padding: 30px 20px;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .form-container {
+                padding: 30px 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .info-card {
+                margin-bottom: 20px;
+            }
+        }
+                /* Styles spécifiques pour le carrousel de projets avec glissement */
+        .projects-carousel .slick-list {
+            padding: 20px 0;
+        }
+        
+        .projects-carousel .slick-slide {
+            padding: 0 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .projects-carousel .slick-slide:hover {
+            transform: translateY(-5px);
+        }
+        
+        .projects-carousel .slick-prev,
+        .projects-carousel .slick-next {
+            width: 40px;
+            height: 40px;
+            display: none !important;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .projects-carousel .slick-prev {
+            left: -20px;
+            display: none !important;
+        }
+        
+        .projects-carousel .slick-next {
+            right: -20px;
+            display: none !important;
+        }
+        
+        .projects-carousel .slick-prev:before,
+        .projects-carousel .slick-next:before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .projects-carousel .slick-prev:before {
+            content: '\f053';
+        }
+        
+        .projects-carousel .slick-next:before {
+            content: '\f054';
+        }
+        
+        
+        
+        .projects-carousel .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .projects-carousel .slick-dots li.slick-active button:before {
+            color: var(--primary);
+            opacity: 1;
+        }
+        .projects-carousel {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .projects-title {
+            font-size: 2rem;
+            font-weight: normal;
+            font-family: 'Roboto', sans-serif;
+            color: var(--secondary);
+        }
+        
+        .projects-link {
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color .3s ease;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .projects-link:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+        
+        .projects-link:hover {
+            color: var(--primary);
+        }
+        
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .project-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 15px;
+            color: var(--secondary);
+        }
+        
+        .project-info h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--secondary);
+        }
+        
+        .projects-text {
+            font-size: 1.4em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" style="max-width: 80px;" alt="">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos de nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Prestations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Références</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+<!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <h4><i class="fas fa-map-marker-alt"></i> Adresse</h4>
+                       <p>123 Rue de l'Énergie<br>
+                        1200 Genève, Suisse</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <h4><i class="fas fa-phone"></i> Téléphone</h4>
+                        <p>+41 22 123 45 67<br>
+                        Lun-Ven: 9h-17h</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <h4><i class="fas fa-envelope"></i> Email</h4>
+                        <p>info@opti-sun.ch<br>
+                        Réponse sous 24h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <h2 class="form-title">Envoyez-nous un message</h2>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Nom *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                           
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea class="form-control" id="message" placeholder="Décrivez-nous votre projet ou votre question..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit col-md-3">
+                                <i class="fas fa-paper-plane me-2"></i> Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Section Nos Derniers Projets - MODIFIÉE pour Slick Carousel -->
+    <section class="projects-carousel">
+        <div class="container">
+            <!-- En-tête avec titre et texte -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <h2 class="projects-title">Nos Derniers Projets</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="projects-text">
+                        Découvrez quelques-unes de nos réalisations récentes en photovoltaïque
+                    </p>
+                    <a href="#" class="projects-link">Découvrez nos projets</a>
+                </div>
+            </div>
+
+            <!-- Carrousel Slick - REMPLACE le carrousel Bootstrap -->
+            <div class="projects-slick-carousel">
+                <!-- Projet 1 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 1">
+                        <div class="project-info">
+                            <h5>Immeuble Route de Sous-Moulin - Genève</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 2">
+                        <div class="project-info">
+                            <h5>Maison de Retraite Érables - Genève</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 3">
+                        <div class="project-info">
+                            <h5>Clinique Genolier - Vaud</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 4">
+                        <div class="project-info">
+                            <h5>Projet Résidentiel Lausanne</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 5">
+                        <div class="project-info">
+                            <h5>Usine Industrielle Zurich</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-item">
+                    <a href="#" class="project-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="d-block w-100 project-img" alt="Projet 6">
+                        <div class="project-info">
+                            <h5>Bâtiment Administratif Genève</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Opti Sun Sàrl</h3>
+                    <p>Bureau d'études et de conseil spécialisé dans l'ingénierie photovoltaïque. Nous vous accompagnons dans votre transition énergétique.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Liens rapides</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">À propos</a></li>
+                        <li><a href="services.html" class="text-white text-decoration-none">Prestations</a></li>
+                        <li><a href="references.html" class="text-white text-decoration-none">Références</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Rue de l'Énergie, Genève</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +41 22 123 45 67</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@opti-sun.ch</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Lun-Ven: 9h-17h</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2023 Opti Sun Sàrl. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Add jQuery and Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Initialize Slick Carousel for client logos
+        $(document).ready(function(){
+            $('.logos-carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+            
+            // Initialize Slick Carousel for projects - NOUVEAU
+            $('.projects-slick-carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: false,
+                draggable: true, // Permet le glissement avec la souris
+                swipe: true,     // Permet le glissement tactile
+                touchMove: true, // Permet le déplacement par toucher
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+        
+        // Animation pour la section À propos
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutSection = document.querySelector('.about-section');
+            const servicesItems = document.querySelectorAll('.services-list li');
+            
+            // Observer pour animer les éléments lorsqu'ils deviennent visibles
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        servicesItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animated');
+                            }, index * 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(aboutSection);
+            
+            // Animation des compteurs - MODIFIÉ pour ralentir
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 1000; // Augmenté pour ralentir l'animation
+            
+            const startCounter = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    
+                    const inc = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(() => startCounter(), 20); // Augmenté le délai pour ralentir
+                    } else {
+                        counter.innerText = target;
+                    }
+                });
+            };
+            
+            
+        // Démarrer l'animation des compteurs lorsqu'ils sont visibles
+            const statsSection = document.querySelector('.stats-counter-section');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-count');
+                            const count = +counter.innerText;
+                            const increment = target / speed;
+                            
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + increment);
+                                setTimeout(updateCount, 1);
+                            } else {
+                                counter.innerText = target;
+                            }
+                            
+                            function updateCount() {
+                                const count = +counter.innerText;
+                                if (count < target) {
+                                    counter.innerText = Math.ceil(count + increment);
+                                    setTimeout(updateCount, 1);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsSection);
+        });
+    </script>
+</body>
+</html>
