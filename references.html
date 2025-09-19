@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opti Sun - Références</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8C00;
+            --primary-dark: #E67E00;
+            --secondary: #2C3E50;
+            --light: #ECF0F1;
+            --accent: #3498DB;
+            --text: #333333;
+            --background: #FFFFFF;
+            --gradient: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            
+            line-height: 1.3;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            color: var(--secondary);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .contact-button {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .references-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.opti-sun.ch/img/bg.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 150px 0 150px;
+            margin-top: 122px;
+            text-align: center;
+        }
+        .references-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* References Section */
+        .references-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        
+        /* Filter Dropdown - REMPLACE les boutons */
+        .filter-dropdown {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            width: 250px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF8C00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--primary-dark);
+        }
+        
+        /* Reference Cards */
+        .reference-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 30px;
+            position: relative;
+            background: transparent;
+            height: auto; /* Hauteur fixe pour toutes les cartes */
+        }
+        
+        .reference-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .reference-img-container {
+            height: 360px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .reference-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .reference-card:hover .reference-img {
+            transform: scale(1.05);
+        }
+        
+        
+        .reference-title-container {
+            padding: 15px;
+           
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .reference-title {
+            font-size: 1.2rem;
+            
+            color: var(--secondary);
+        }
+        
+        
+        
+        .status-progress {
+            color: var(--primary);
+        }
+        
+        /* Overlay qui apparaît au survol - MODIFIÉ pour couvrir seulement l'image */
+        .reference-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 360px; /* Même hauteur que l'image */
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        
+        .reference-card:hover .reference-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        
+        
+        .reference-info ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+        
+        
+        
+        .reference-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .reference-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .reference-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .references-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+           
+            .reference-card {
+                height: 350px;
+            }
+            
+            .reference-img-container {
+                height: 180px;
+            }
+            
+            .reference-overlay {
+                height: 180px; /* Ajusté pour la version mobile */
+            }
+            
+            .reference-title-container {
+                height: 100px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" style="max-width: 80px;" alt="Opti Sun Logo">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos de nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Prestations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="references.html">Références</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+               
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="references-hero">
+        <div class="container">
+            <h1>Nos Références</h1>
+            <p class="lead mt-3">Découvrez nos projets Basés en Suisse romande, nous accompagnons une grande diversité de clients dans la conception et la réalisation de projets photovoltaïques, grâce à notre expertise en ingénierie, conseil et accompagnement personnalisé.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="references-section">
+        <div class="container">
+           
+            
+            <!-- Dropdown Filter - REMPLACE les boutons -->
+            <div class="filter-dropdown">
+                <select class="filter-select" id="projectFilter">
+                    <option value="all">Tous les projets</option>
+                    <option value="completed">Projets terminés</option>
+                    <option value="progress">Projets en cours</option>
+                </select>
+            </div>
+            
+            <!-- Reference Cards -->
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="completed">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet résidentiel" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol - MAINTENANT seulement sur l'image -->
+                            <div class="reference-overlay">
+                                <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">Esrec des Chânats - BELLEVUE</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="completed">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet commercial" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol -->
+                            <div class="reference-overlay">
+                                 <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">Centre Commercial Lausanne</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="progress">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet résidentiel" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol -->
+                            <div class="reference-overlay">
+                                 <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">Usine Zurich</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="completed">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet public" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol -->
+                            <div class="reference-overlay">
+                                <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">École Primaire Genève</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="progress">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet résidentiel" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol -->
+                            <div class="reference-overlay">
+                                 <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">Maison Familiale Vaud</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="col-md-6 col-lg-4 fade-in" data-status="completed">
+                    <div class="reference-card">
+                        <div class="reference-img-container">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Projet commercial" class="reference-img">
+                            
+                            <!-- Overlay qui apparaît au survol -->
+                            <div class="reference-overlay">
+                                <div class="reference-info">
+                                    <ul>
+                                        <li><b>👤Client</b> : Ville de Carouge - SIG</li>
+                                        <li><b>📅Année</b> : 2025</li>
+                                        <li><b>⚡Puissance</b> : 32,34 kWc</li>
+                                        <li><b>📐Phases SIA</b> : 31</li>
+                                        <li><b>🛠Prestations</b> :
+- Finalisation des travaux de l'installation Photovoltaïque
+- Rédaction Cahier des charges
+- Adjudication et suivi des travaux</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="reference-title-container">
+                            <h3 class="reference-title">Hôtel Luxury - Montreux</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Opti Sun Sàrl</h3>
+                    <p>Bureau d'études et de conseil spécialisé dans l'ingénierie photovoltaïque. Nous vous accompagnons dans votre transition énergétique.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Liens rapides</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">À propos</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Prestations</a></li>
+                        <li><a href="references.html" class="text-white text-decoration-none">Références</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Rue de l'Énergie, Genève</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +41 22 123 45 67</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@opti-sun.ch</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Lun-Ven: 9h-17h</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2023 Opti Sun Sàrl. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Filter functionality with dropdown
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterSelect = document.getElementById('projectFilter');
+            const referenceCards = document.querySelectorAll('.reference-card');
+            
+            filterSelect.addEventListener('change', () => {
+                const filterValue = filterSelect.value;
+                
+                referenceCards.forEach(card => {
+                    const cardStatus = card.parentElement.getAttribute('data-status');
+                    
+                    if (filterValue === 'all' || filterValue === cardStatus) {
+                        card.parentElement.style.display = 'block';
+                        setTimeout(() => {
+                            card.parentElement.classList.add('fade-in');
+                        }, 10);
+                    } else {
+                        card.parentElement.classList.remove('fade-in');
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Animate cards on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.fade-in');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    if (position.top < window.innerHeight - 100) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Initial check
+        });
+    </script>
+</body>
+</html>
