@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Add Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
         :root {
             --primary: #FF8C00;
@@ -108,9 +111,6 @@
             color: white;
         }
         
-        
-        
-        
         /* Form Section */
         .form-section {
             padding: 80px 0;
@@ -161,19 +161,20 @@
         }
         
         .btn-submit {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            font-size: 1.1rem;
-            width: 100%;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-        }
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Réduit de 16px 40px */
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-size: 1rem; /* Réduit de 1.1rem */
+    width: auto; /* Changé de 100% à auto */
+    margin: 15px auto 0; /* Centrage horizontal */
+    letter-spacing: 0.5px;
+    display: inline-block; /* Pour que le width:auto fonctionne */
+}
         
         .btn-submit:hover {
             transform: translateY(-3px);
@@ -265,98 +266,7 @@
             transform: translateY(-5px);
         }
         
-      
-        
-        @media (max-width: 768px) {
-            
-            
-            .contact-info-card {
-                margin-bottom: 30px;
-                padding: 30px 20px;
-            }
-            
-            .form-title {
-                font-size: 1.8rem;
-            }
-            
-            .form-container {
-                padding: 30px 25px;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .info-card {
-                margin-bottom: 20px;
-            }
-        }
-                /* Styles spécifiques pour le carrousel de projets avec glissement */
-        .projects-carousel .slick-list {
-            padding: 20px 0;
-        }
-        
-        .projects-carousel .slick-slide {
-            padding: 0 15px;
-            transition: transform 0.3s ease;
-        }
-        
-        .projects-carousel .slick-slide:hover {
-            transform: translateY(-5px);
-        }
-        
-        .projects-carousel .slick-prev,
-        .projects-carousel .slick-next {
-            width: 40px;
-            height: 40px;
-            display: none !important;
-            z-index: 10;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .projects-carousel .slick-prev {
-            left: -20px;
-            display: none !important;
-        }
-        
-        .projects-carousel .slick-next {
-            right: -20px;
-            display: none !important;
-        }
-        
-        .projects-carousel .slick-prev:before,
-        .projects-carousel .slick-next:before {
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--primary);
-            font-size: 20px;
-        }
-        
-        .projects-carousel .slick-prev:before {
-            content: '\f053';
-        }
-        
-        .projects-carousel .slick-next:before {
-            content: '\f054';
-        }
-        
-        
-        
-        .projects-carousel .slick-dots li button:before {
-            font-size: 12px;
-            color: var(--secondary);
-            opacity: 0.5;
-        }
-        
-        .projects-carousel .slick-dots li.slick-active button:before {
-            color: var(--primary);
-            opacity: 1;
-        }
+        /* Styles spécifiques pour le carrousel de projets avec glissement */
         .projects-carousel {
             padding: 80px 0;
             background-color: var(--light);
@@ -397,11 +307,10 @@
         .project-card {
             border-radius: 15px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            box-shadow: var(--shadow);
             transition: transform .3s ease, box-shadow .3s ease;
+            height: 100%;
         }
         
         .project-card:hover {
@@ -412,10 +321,11 @@
         .project-img {
             height: 250px;
             object-fit: cover;
+            width: 100%;
         }
         
         .project-info {
-            padding: 15px;
+            padding: 20px;
             color: var(--secondary);
         }
         
@@ -427,7 +337,72 @@
         }
         
         .projects-text {
-            font-size: 1.4em;
+            font-size: 1.2em;
+        }
+        
+        .projects-slick-carousel .slick-list {
+            padding: 20px 0;
+        }
+        
+        .projects-slick-carousel .slick-slide {
+            padding: 0 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .projects-slick-carousel .slick-slide:hover {
+            transform: translateY(-5px);
+        }
+        
+        
+        .projects-slick-carousel .slick-prev:before {
+            content: '\f053';
+        }
+        
+        .projects-slick-carousel .slick-next:before {
+            content: '\f054';
+        }
+        
+        .projects-slick-carousel .slick-dots {
+            bottom: -40px;
+        }
+        
+        .projects-slick-carousel .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .projects-slick-carousel .slick-dots li.slick-active button:before {
+            color: var(--primary);
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info-card {
+                margin-bottom: 30px;
+                padding: 30px 20px;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .form-container {
+                padding: 30px 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .info-card {
+                margin-bottom: 20px;
+            }
+            
+            .projects-slick-carousel .slick-prev,
+            .projects-slick-carousel .slick-next {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -455,7 +430,7 @@
                         <a class="nav-link" href="#">Prestations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Références</a>
+                        <a class="nav-link" href="references.html">Références</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -522,7 +497,7 @@
                                 <label for="message">Message *</label>
                                 <textarea class="form-control" id="message" placeholder="Décrivez-nous votre projet ou votre question..." required></textarea>
                             </div>
-                            <button type="submit" class="btn-submit col-md-3">
+                            <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane me-2"></i> Envoyer le message
                             </button>
                         </form>
@@ -661,7 +636,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Add jQuery and Slick Carousel JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -676,54 +650,9 @@
                 navbar.classList.remove('scrolled');
             }
         });
-    </script>
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
         
-        // Initialize Slick Carousel for client logos
+        // Initialize Slick Carousel for projects
         $(document).ready(function(){
-            $('.logos-carousel').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-            
-            // Initialize Slick Carousel for projects - NOUVEAU
             $('.projects-slick-carousel').slick({
                 dots: true,
                 infinite: true,
@@ -751,81 +680,6 @@
                     }
                 ]
             });
-        });
-        
-        // Animation pour la section À propos
-        document.addEventListener('DOMContentLoaded', function() {
-            const aboutSection = document.querySelector('.about-section');
-            const servicesItems = document.querySelectorAll('.services-list li');
-            
-            // Observer pour animer les éléments lorsqu'ils deviennent visibles
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        servicesItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('animated');
-                            }, index * 200);
-                        });
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            observer.observe(aboutSection);
-            
-            // Animation des compteurs - MODIFIÉ pour ralentir
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 1000; // Augmenté pour ralentir l'animation
-            
-            const startCounter = () => {
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-count');
-                    const count = +counter.innerText;
-                    
-                    const inc = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(() => startCounter(), 20); // Augmenté le délai pour ralentir
-                    } else {
-                        counter.innerText = target;
-                    }
-                });
-            };
-            
-            
-        // Démarrer l'animation des compteurs lorsqu'ils sont visibles
-            const statsSection = document.querySelector('.stats-counter-section');
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(counter => {
-                            const target = +counter.getAttribute('data-count');
-                            const count = +counter.innerText;
-                            const increment = target / speed;
-                            
-                            if (count < target) {
-                                counter.innerText = Math.ceil(count + increment);
-                                setTimeout(updateCount, 1);
-                            } else {
-                                counter.innerText = target;
-                            }
-                            
-                            function updateCount() {
-                                const count = +counter.innerText;
-                                if (count < target) {
-                                    counter.innerText = Math.ceil(count + increment);
-                                    setTimeout(updateCount, 1);
-                                } else {
-                                    counter.innerText = target;
-                                }
-                            }
-                        });
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            statsObserver.observe(statsSection);
         });
     </script>
 </body>
