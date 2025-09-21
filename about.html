@@ -117,43 +117,7 @@
             color: white;
         }
         
-        /* Hero Section pour la page À propos */
-        .about-hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1800&q=80) no-repeat center center/cover;
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-            position: relative;
-        }
         
-        .about-hero-content {
-            position: relative;
-            z-index: 10;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .about-hero-section h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        
-        .breadcrumb {
-            justify-content: center;
-            background: transparent;
-            margin-bottom: 0;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-        
-        .breadcrumb-item a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .breadcrumb-item.active {
-            color: #fff;
-        }
         
         /* Section Contenu À propos */
         .about-content-section {
@@ -368,6 +332,34 @@
             transform: translateY(0);
         }
         
+        /* NEW: Scroll animation classes */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+        
         @media (max-width: 992px) {
             .about-img {
                 transform: perspective(1000px) rotateY(0);
@@ -396,6 +388,7 @@
         /* Styles spécifiques pour le carrousel de projets avec glissement */
         .projects-carousel .slick-list {
             padding: 20px 0;
+            
         }
         
         .projects-carousel .slick-slide {
@@ -555,7 +548,7 @@
                         <a class="nav-link active" href="about.html">À propos de nous</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Prestations</a>
+                        <a class="nav-link" href="prestations.html">Prestations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="references.html">Références</a>
@@ -569,8 +562,9 @@
         </div>
     </nav>
 
+
     <!-- Section Contenu À propos -->
-    <section class="about-content-section">
+    <section class="about-content-section section-hidden">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
@@ -587,8 +581,9 @@
             </div>
         </div>
     </section>
-<!-- Section Nos Derniers Projets - MODIFIÉE pour Slick Carousel -->
-    <section class="projects-carousel">
+    
+    <!-- Section Nos Derniers Projets - MODIFIÉE pour Slick Carousel -->
+    <section class="projects-carousel section-hidden">
         <div class="container">
             <!-- En-tête avec titre et texte -->
             <div class="row align-items-center mb-5">
@@ -673,8 +668,9 @@
             </div>
         </div>
     </section>
+    
     <!-- Footer -->
-    <footer>
+    <footer class="section-hidden">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -729,61 +725,17 @@
                 navbar.classList.remove('scrolled');
             }
         });  
-    </script>
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
         
-        // Initialize Slick Carousel for client logos
+        // Initialize Slick Carousel for projects
         $(document).ready(function(){
-            $('.logos-carousel').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-            
-            // Initialize Slick Carousel for projects - NOUVEAU
+            // Initialize Slick Carousel for projects
             $('.projects-slick-carousel').slick({
                 dots: true,
                 infinite: true,
                 speed: 300,
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                autoplay: false,
+                autoplay: true,
                 draggable: true, // Permet le glissement avec la souris
                 swipe: true,     // Permet le glissement tactile
                 touchMove: true, // Permet le déplacement par toucher
@@ -806,79 +758,23 @@
             });
         });
         
-        // Animation pour la section À propos
+        // NEW: Scroll animation for sections
         document.addEventListener('DOMContentLoaded', function() {
-            const aboutSection = document.querySelector('.about-section');
-            const servicesItems = document.querySelectorAll('.services-list li');
+            const sections = document.querySelectorAll('.section-hidden');
             
-            // Observer pour animer les éléments lorsqu'ils deviennent visibles
-            const observer = new IntersectionObserver((entries) => {
+            const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        servicesItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('animated');
-                            }, index * 200);
-                        });
+                        entry.target.classList.add('section-visible');
                     }
                 });
-            }, { threshold: 0.3 });
+            }, {
+                threshold: 0.15
+            });
             
-            observer.observe(aboutSection);
-            
-            // Animation des compteurs - MODIFIÉ pour ralentir
-            const counters = document.querySelectorAll('.stat-number');
-            const speed = 1000; // Augmenté pour ralentir l'animation
-            
-            const startCounter = () => {
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-count');
-                    const count = +counter.innerText;
-                    
-                    const inc = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(() => startCounter(), 20); // Augmenté le délai pour ralentir
-                    } else {
-                        counter.innerText = target;
-                    }
-                });
-            };
-            
-            
-        // Démarrer l'animation des compteurs lorsqu'ils sont visibles
-            const statsSection = document.querySelector('.stats-counter-section');
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(counter => {
-                            const target = +counter.getAttribute('data-count');
-                            const count = +counter.innerText;
-                            const increment = target / speed;
-                            
-                            if (count < target) {
-                                counter.innerText = Math.ceil(count + increment);
-                                setTimeout(updateCount, 1);
-                            } else {
-                                counter.innerText = target;
-                            }
-                            
-                            function updateCount() {
-                                const count = +counter.innerText;
-                                if (count < target) {
-                                    counter.innerText = Math.ceil(count + increment);
-                                    setTimeout(updateCount, 1);
-                                } else {
-                                    counter.innerText = target;
-                                }
-                            }
-                        });
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            statsObserver.observe(statsSection);
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
         });
     </script>
 </body>
