@@ -668,6 +668,34 @@
             font-size: 18px;
         }
         
+        /* NEW: Scroll animation classes */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+        
         @media (max-width: 992px) {
             .about-img-container {
                 padding-right: 1rem;
@@ -913,10 +941,10 @@
                         <a class="nav-link" href="about.html">À propos de nous</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Prestations</a>
+                        <a class="nav-link" href="prestations.html">Prestations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Références</a>
+                        <a class="nav-link" href="references.html">Références</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -932,7 +960,7 @@
         <div class="container hero-content">
             <h1>Ingénierie et conseil photovoltaïque</h1>
             <p>Optimisez votre transition vers l'énergie photovoltaïque avec Opti Sun Sàrl, bureau d'études et de conseil.</p>
-            <a href="#" class="contact-button ms-lg-3">
+            <a href="contact.html" class="contact-button ms-lg-3">
                     <i class="fas fa-phone"></i> Contactez-nous
                 </a>
         </div>
@@ -941,7 +969,7 @@
  
 
     <!-- Nouvelle section À propos -->
-    <section class="about-section">
+    <section class="about-section section-hidden">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0 about-img-container">
@@ -965,7 +993,7 @@
     </section>
 
     <!-- Section Clients avec carrousel - FIXED -->
-    <section class="simple-logos-section">
+    <section class="simple-logos-section section-hidden">
         <div class="container">
             <center>
                 <h2 class="section-title"><i>Ils nous font confiance</i></h2>
@@ -995,7 +1023,7 @@
     </section>
 
     <!-- Section Nos Derniers Projets - MODIFIÉE pour Slick Carousel -->
-    <section class="projects-carousel">
+    <section class="projects-carousel section-hidden">
         <div class="container">
             <!-- En-tête avec titre et texte -->
             <div class="row align-items-center mb-5">
@@ -1082,7 +1110,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="section-hidden">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -1180,7 +1208,7 @@
                 speed: 300,
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                autoplay: false,
+                autoplay: true,
                 draggable: true, // Permet le glissement avec la souris
                 swipe: true,     // Permet le glissement tactile
                 touchMove: true, // Permet le déplacement par toucher
@@ -1276,6 +1304,25 @@
             }, { threshold: 0.5 });
             
             statsObserver.observe(statsSection);
+        });
+        
+        // NEW: Scroll animation for sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-hidden');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
         });
     </script>
 </body>
