@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opti Sun - Prestations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Add Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <style>
+        :root {
+            --primary: #FF8C00;
+            --primary-dark: #E67E00;
+            --secondary: #2C3E50;
+            --light: #ECF0F1;
+            --accent: #3498DB;
+            --text: #333333;
+            --background: #FFFFFF;
+            --gradient: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            color: var(--secondary);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .contact-button {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+            color: white;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            margin-top: 55px;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        
+        /* Service Cards - MODIFIÉ pour images en pleine hauteur */
+        .service-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 50px;
+            background: white;
+            position: relative;
+            display: flex;
+            height: auto;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        
+        .service-img-container {
+            flex: 0 0 45%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            flex: 0 0 55%;
+            padding: 40px 30px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .service-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+        
+        .service-list li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .service-list li:before {
+            content: '•';
+            color: var(--primary);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .service-essential {
+            background: rgba(255, 140, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: auto;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .service-essential h5 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .service-card {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .service-img-container {
+                flex: 0 0 300px; /* Hauteur fixe sur mobile */
+            }
+            
+            .service-content {
+                flex: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .service-content {
+                padding: 30px 20px 20px;
+            }
+            
+            .service-number {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+            
+            .service-img-container {
+                flex: 0 0 250px; /* Hauteur réduite sur petits écrans */
+            }
+        }
+        
+        /* Styles spécifiques pour le carrousel de projets avec glissement */
+        .projects-carousel {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .projects-title {
+            font-size: 2rem;
+            font-weight: normal;
+            font-family: 'Roboto', sans-serif;
+            color: var(--secondary);
+        }
+        
+        .projects-link {
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color .3s ease;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .projects-link:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+        
+        .projects-link:hover {
+            color: var(--primary);
+        }
+        
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            background: transparent;
+            box-shadow: var(--shadow);
+            transition: transform .3s ease, box-shadow .3s ease;
+            margin: 0 15px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .project-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .project-info {
+            padding: 15px;
+            color: var(--secondary);
+        }
+        
+        .project-info h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--secondary);
+        }
+        
+        .projects-text {
+            font-size: 1.4em;
+        }
+        
+        /* Slick Carousel Customization */
+        .slick-prev, .slick-next {
+            width: 40px;
+            height: 40px;
+            display: none !important;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slick-prev {
+            left: -20px;
+            display: none !important;
+        }
+        
+        .slick-next {
+            right: -20px;
+            display: none !important;
+        }
+        
+        .slick-prev:before, .slick-next:before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .slick-prev:before {
+            content: '\f053';
+        }
+        
+        .slick-next:before {
+            content: '\f054';
+        }
+        
+        .slick-dots {
+            bottom: -40px;
+        }
+        
+        .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .slick-dots li.slick-active button:before {
+            color: var(--primary);
+            opacity: 1;
+        }
+        
+        /* Clickable card style */
+        .clickable-card {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        
+        
+        .clickable-card:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" style="max-width: 80px;" alt="Opti Sun Logo">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos de nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="prestations.html">Prestations</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="references.html">Références</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Prestations</h2>
+            </div>
+            
+            <!-- Service 1 - Clickable card -->
+            <div class="service-card clickable-card" id="first-service-card">
+                <div class="service-img-container">
+                    <div class="service-number">1</div>
+                    <img src="https://www.idex.fr/sites/default/files/styles/phablet/public/2025-06/Pics%20Article%20-%202025-06-11T115622.600.jpg?itok=cHhOjvkb" alt="Études de faisabilité" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Études de faisabilité & AMO photovoltaïque</h3>
+                    <ul class="service-list">
+                        <li>Analyse du potentiel solaire et des contraintes techniques du site</li>
+                        <li>Études économiques et réglementaires</li>
+                        <li>Simulation de production, autoconsommation et études d'ombrage avec visualisation 3D</li>
+                        <li>Gestion des appels d'offres et sélection des prestataires</li>
+                        <li>Assistance à la maîtrise d'ouvrage (phases SIA 31 à 53)</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Garantir la faisabilité, la rentabilité et la conformité de votre projet dès les premières étapes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3 class="service-title">Bureau d'études et ingénierie</h3>
+                    <ul class="service-list">
+                        <li>Dimensionnement et conception des installations : plan d'implantation, schéma de principe, onduleurs, structure porteuse, câblage, tableaux électriques</li>
+                        <li>Réalisation des démarches administratives : autorisation de construire, raccordement électrique, subventions</li>
+                        <li>Maîtrise d'œuvre photovoltaïque et suivi technique</li>
+                        <li>Études innovantes et optimisation technique</li>
+                        <li>Gestion de la maintenance et plans de suivi (RCP, CA, CEL, RCP virtuel)</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Sécuriser et optimiser vos installations pour assurer performance, durabilité et conformité.</p>
+                    </div>
+                </div>
+                <div class="service-img-container">
+                    <div class="service-number">2</div>
+                    <img src="https://images.prismic.io/travauxlib/b7e2e7ce-48d5-48e6-b2eb-c712a612b5e7_types-bureaux-etudes-batiment.jpg?auto=compress,format&rect=0,0,1050,700&w=1050&h=700" alt="Bureau d'études" class="service-img">
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-img-container">
+                    <div class="service-number">3</div>
+                    <img src="https://www.datocms-assets.com/115004/1709551716-eigenverbrauch-optimieren-header.png" alt="Autoconsommation" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Études et optimisation de l'autoconsommation</h3>
+                    <ul class="service-list">
+                        <li>Analyse de modèles d'autoconsommation individuelle ou collective (RCP, CA, CEL, CAv, RCp)</li>
+                        <li>Simulation et modélisation pour maximiser l'autonomie et la rentabilité</li>
+                        <li>Études économiques et cadre réglementaire</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Tirer le meilleur parti des nouvelles lois et dispositifs, notamment pour l'autoconsommation collective.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-content">
+                    <h3 class="service-title">Conseils spécialisés</h3>
+                    <ul class="service-list">
+                        <li>Assurances photovoltaïques</li>
+                        <li>Contracting photovoltaïque</li>
+                        <li>Achat et vente d'énergie</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Sécuriser vos investissements et maximiser la rentabilité de vos projets.</p>
+                    </div>
+                </div>
+                <div class="service-img-container">
+                    <div class="service-number">4</div>
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conseils spécialisés" class="service-img">
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+                <div class="service-img-container">
+                    <div class="service-number">5</div>
+                    <img src="https://media.lesechos.com/api/v1/images/view/5f689d458fe56f62d925a72a/1280x720/315230-formation-les-salaries-preferent-l-accompagnement-individuel-web-tete-030812017143.jpg" alt="Formations" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Formations & accompagnement</h3>
+                    <ul class="service-list">
+                        <li>Coaching et formation des équipes terrain</li>
+                        <li>Assistance pour la création d'une société ou d'un département solaire</li>
+                        <li>Support pour chefs de projet</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Développer les compétences internes et garantir l'efficacité des équipes dans la transition énergétique.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card">
+                
+                <div class="service-content">
+                    <h3 class="service-title">Offres complémentaires</h3>
+                    <ul class="service-list">
+                        <li>Installation photovoltaïque, batteries (avec ou sans backup) et bornes de recharge</li>
+                        <li>Rénovation et mise en conformité des installations solaires</li>
+                        <li>Audits énergétiques CECB и CECB+</li>
+                    </ul>
+                    <div class="service-essential">
+                        <h5>Pourquoi c'est essentiel</h5>
+                        <p>Proposer des solutions complètes et conformes aux normes pour optimiser votre production et votre autonomie énergétique.</p>
+                    </div>
+                </div>
+                <div class="service-img-container">
+                    <div class="service-number">6</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_35Qk_Td5B9WWvQx9fSU1ucWuOvsiINaUKQ&s" alt="Offres complémentaires" class="service-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-carousel">
+        <div class="container">
+            <!-- En-tête avec titre et texte -->
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <h2 class="projects-title">Nos Derniers Projets</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="projects-text">
+                        Découvrez quelques-unes de nos réalisations récentes en photovoltaïque
+                    </p>
+                    <a href="#" class="projects-link">Découvrez nos projets</a>
+                </div>
+            </div>
+
+            <!-- Carrousel Slick -->
+            <div class="projects-slick-carousel">
+                <!-- Projet 1 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 1">
+                        <div class="project-info">
+                            <h5>Immeuble Route de Sous-Moulin - Genève</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 2">
+                        <div class="project-info">
+                            <h5>Maison de Retraite Érables - Genève</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 3">
+                        <div class="project-info">
+                            <h5>Clinique Genolier - Vaud</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 4">
+                        <div class="project-info">
+                            <h5>Projet Résidentiel Lausanne</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 5">
+                        <div class="project-info">
+                            <h5>Usine Industrielle Zurich</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-item">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                             class="project-img" alt="Projet 6">
+                        <div class="project-info">
+                            <h5>Bâtiment Administratif Genève</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Opti Sun Sàrl</h3>
+                    <p>Bureau d'études et de conseil spécialisé dans l'ingénierie photovoltaïque. Nous vous accompagnons dans votre transition énergétique.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-title">Liens rapides</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">À propos</a></li>
+                        <li><a href="services.html" class="text-white text-decoration-none">Prestations</a></li>
+                        <li><a href="references.html" class="text-white text-decoration-none">Références</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Rue de l'Énergie, Genève</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +41 22 123 45 67</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@opti-sun.ch</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i> Lun-Ven: 9h-17h</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2023 Opti Sun Sàrl. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize Slick Carousel for projects
+        $(document).ready(function(){
+            $('.projects-slick-carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                draggable: true,
+                swipe: true,
+                touchMove: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+            
+            // Add click event to the first service card
+            $('#first-service-card').on('click', function() {
+                window.location.href = 'formules.html';
+            });
+        });
+    </script>
+</body>
+</html>
